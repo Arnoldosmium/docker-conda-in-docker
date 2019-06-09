@@ -1,0 +1,10 @@
+language: c   # placeholder
+service:
+  - docker
+
+matrix:
+  include:
+    - env: SYS=debian
+
+script:
+  - cd $SYS && docker build -t ${SYS}_latest .
