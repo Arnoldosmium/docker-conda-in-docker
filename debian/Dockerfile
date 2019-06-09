@@ -7,8 +7,9 @@ RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 
 RUN apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io && \
-    service docker start && systemctl start docker && \
-    docker run hello-world
+    service docker start && \
+    dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 && \
+    docker ps -a
 
 RUN curl https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -o /tmp/miniconda.sh && \
     bash /tmp/miniconda.sh -b -p /opt/miniconda && \
