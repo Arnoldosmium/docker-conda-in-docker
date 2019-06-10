@@ -6,10 +6,10 @@ RUN apt-get update && \
 RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - && \
     add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/debian $(lsb_release -cs) stable"
 
-RUN apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io && \
+RUN mkdir -p /var/lib/docker && \
+    apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io && \
     service docker start && \
-    ls -al /var/run && \
-    ls -al /var/lib/docker
+    ls -al /run
 
 RUN dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 && \
     docker ps -a
