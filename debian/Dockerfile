@@ -11,7 +11,7 @@ RUN mkdir -p /var/lib/docker && \
     service docker start && \
     ls -al /run
 
-RUN dockerd --host=unix:///var/run/docker.sock --host=tcp://0.0.0.0:2375 && \
+RUN dockerd --host=unix:///var/run/docker.sock && \
     docker ps -a
 
 RUN curl https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -o /tmp/miniconda.sh && \
