@@ -18,9 +18,14 @@ script:
 
 before_deploy:
   - docker login -u arnoldosmium -p $P
+  - export TAG=$(git describe --tags)
 
 deploy:
   - provider: script
     script: docker push ${IMG_NAME}:${SYS}-dev
     on:
-      branch: fix-deployx
+      branch: master
+  - provider: script
+    script: docker tag ${IMG_NAME}:${SYS}-dev ${IMG_NAME}:${SYS}-${TAG} && docker push ${IMG_NAME}:${SYS}-${TAG}
+    on:
+      tags: true
