@@ -2,9 +2,19 @@ language: c   # placeholder
 service:
   - docker
 
+env:
+  - IMG_NAME=arnoldosmium/docker-conda-in-docker
+
 matrix:
   include:
     - env: SYS=debian
 
 script:
-  - cd $SYS && docker build -t ${SYS}_latest .
+  - cd $SYS && docker build -t ${IMG_NAME}:${SYS}-dev .
+
+before_deploy:
+  - secure: "KVBlmSgZ93vxBzL83e5UzXKfL7Z9IJEN+RQMjUs9RRTEEjwfDnh4PrCWj5oBj2gkb1yVARe3S+CeahXwIvFi7g6pYrWMVLfYoA4p0l+ogkkS6/06bKYOnOa53N0j1aHUul3GFB1Re4jawZYK14+wyG2AsygHaE0RSUWeGZW42SivCQZhqpR6qX5SK18WIjXnD2cX/jStWmoqQuZaRryTGeIeAlfZcOVWUh5VfLcDWAML5/5LExDRmqqdDQBoHEASiDDuj7dSIpRnxQmWGsvZjsX41f2yJ6r4crBJZMjNmCOY0H1MArEaL4QrzLo7HsJcVASUZp1tYYVhH+CT6lAOdxFTvUWbJGeoWqb1C6uNOYM8zpmr3LKm+zVMok3OYvB/hic1+8uvWUUXpPJSrriJ7zpQu9Y265ajUhL5fj6nJs7k12hirYNs2oW23LNumYvB14Ti95QxUeaW7Z62ZHaeDrlWrP3N2HTZAgnvU70EYsqyftUc283hv0fXbHi0LOsUNZG/N1ba+try1sIcCP/p8wjAFe7pcfT+QoByzR8aOJH2pt8D7CESM/vjkE3MD27by4eujKRVq6+A8FpdmdZ7iSWnm9STNfb/i5QXuHJP4zATcLpdembjg1sNPGdR8QhAaZCFPP5F6uzIYPA+LmM4EotJrKofKoe3aPxHDi/8ulM="
+
+deploy:
+  - provider: script
+    script: docker push ${IMG_NAME}:${SYS}-dev
