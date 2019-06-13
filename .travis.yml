@@ -8,6 +8,7 @@ matrix:
 
 before_script:
   - export IMG_NAME=arnoldosmium/docker-conda-in-docker
+  - secure: "DBq+Dz8mnf+e+72VKJ319/p2+lOqeNbauH/4FA18XfgehVer3xzZ2UjiihhEAk2c8don6aFDA3SA88TbwnKNmLjNI+8p/JvYcOI1cZCumrkEREDW0DIWEIgTe9hQRR/jOLSB80cm5aKxgiwZ8LUM7mRaA3WRBTROIeSbNTo8eo90Obkry42u+FZhyYXW5KCuuMXFStrg/yWOtdSrfIVodJYpoVp6y7wHmaNdvG2UmwqtJETWlCFjLHWkPkkq/l7SMItReZ0dSv6dfr8YZDJh8qJE2kD5KfW9qQHJpZAqe/jM9YNbaf1u+KLrObtfGddcrGdvSZPX1TqEZf0bPQo9WFSSkS1akCwPMHFlJSL0sr5QE4hPbp9pCZ6DG0phbgYw/FhT/ihKhP7DSQWikmctUUEf84LgX+sRD2uj2lYiJSFTIPR1V8PHmwEUXW/F8dO7d6wOAWtXmbBLjYkaGa9uQaOo6s/gO4SOBF8XNK+GqYGTWMFt4eUA+E97eck0jpfMBdn2sfSNqF36nrx1lF7rmF+l9nnfJtMDlatvXJbj6UELRPm4T1bHErHqMOitgjvwfnUKAt4kEUh0TsQ9Vzh3dlUQdjoCThFNgupIBjPKAN/+jfj4+0IHY4XYdoembYezHAIJdKe8AXVGuX1mXyhrYRHP9rVbChe6ljKIObUh6/k="
 
 script:
   - cd $SYS && docker build -t ${IMG_NAME}:${SYS}-dev .
