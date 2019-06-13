@@ -2,12 +2,12 @@ language: c   # placeholder
 service:
   - docker
 
-env:
-  - IMG_NAME=arnoldosmium/docker-conda-in-docker
-
 matrix:
   include:
     - env: SYS=debian
+
+before_script:
+  - export IMG_NAME=arnoldosmium/docker-conda-in-docker
 
 script:
   - cd $SYS && docker build -t ${IMG_NAME}:${SYS}-dev .
