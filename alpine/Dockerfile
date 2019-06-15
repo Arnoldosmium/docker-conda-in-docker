@@ -3,8 +3,7 @@ FROM docker:18.09
 USER 0
 
 RUN apk add -y bzip2 bash curl openrc && \
-    service docker start && \
-    service docker status
+    docker --info
 
 RUN curl https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -o /tmp/miniconda.sh && \
     bash /tmp/miniconda.sh -b -p /opt/miniconda && \
