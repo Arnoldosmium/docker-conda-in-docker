@@ -10,6 +10,7 @@ RUN apt-get update && apt-get install -y docker-ce docker-ce-cli containerd.io &
 
 RUN curl https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -o /tmp/miniconda.sh && \
     bash /tmp/miniconda.sh -b -p /opt/miniconda && \
+    rm /tmp/miniconda.sh && \
     export PATH=/opt/miniconda/bin:$PATH && \
     conda config --add channels conda-forge && \
     conda install pytest conda-build -y

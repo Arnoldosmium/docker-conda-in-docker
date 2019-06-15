@@ -5,6 +5,7 @@ service:
 matrix:
   include:
     - env: SYS=debian
+    - env: SYS=alpine
 
 env:
   global:
