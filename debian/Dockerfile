@@ -16,7 +16,8 @@ RUN curl https://repo.anaconda.com/miniconda/Miniconda3-4.6.14-Linux-x86_64.sh -
     conda install pytest conda-build -y
 
 RUN curl https://raw.githubusercontent.com/docker-library/docker/91bbc4f7b06c06020d811dafb2266bcd7cf6c06d/18.09/modprobe.sh -o /usr/local/bin/modprobe && \
-	curl https://raw.githubusercontent.com/docker-library/docker/91bbc4f7b06c06020d811dafb2266bcd7cf6c06d/18.09/docker-entrypoint.sh -o /usr/local/bin/docker-entrypoint.sh
+	curl https://raw.githubusercontent.com/docker-library/docker/91bbc4f7b06c06020d811dafb2266bcd7cf6c06d/18.09/docker-entrypoint.sh -o /usr/local/bin/docker-entrypoint.sh && \
+	export PATH=/usr/local/bin:$PATH
 
-ENTRYPOINT ["docker-entrypoint.sh"]
+ENTRYPOINT ["/usr/local/bin/docker-entrypoint.sh"]
 CMD ["bash"]
