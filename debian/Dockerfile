@@ -19,7 +19,9 @@ RUN curl https://raw.githubusercontent.com/docker-library/docker/91bbc4f7b06c060
     chmod u+x /usr/local/bin/modprobe && \
     curl https://raw.githubusercontent.com/docker-library/docker/91bbc4f7b06c06020d811dafb2266bcd7cf6c06d/18.09/docker-entrypoint.sh -o /usr/local/bin/docker-entrypoint.sh && \
     chomd u+x /usr/local/bin/docker-entrypoint.sh && \
-    export PATH=/usr/local/bin:$PATH
+    export PATH=/usr/local/bin:$PATH && \
+    ls -al /usr/local/bin/docker-entrypoint.sh && \
+    cat /usr/local/bin/docker-entrypoint.sh
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["sh"]

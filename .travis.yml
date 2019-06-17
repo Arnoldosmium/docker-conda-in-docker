@@ -16,7 +16,8 @@ before_script:
 
 script:
   - cd $SYS && docker build -t ${IMG_NAME}:${SYS}-dev .
-  - export CONTAINER_ID=$(docker run -d ${IMG_NAME}:${SYS}-dev docker -v)
+  - export CONTAINER_ID=$(docker run -d ${IMG_NAME}:${SYS}-dev tail -f /bin/sh)
+  - docker exec $CONTAINER_ID docker -v
   - docker exec $CONTAINER_ID conda -v
 
 before_deploy:
